@@ -19,7 +19,7 @@ nltk.download('wordnet')
 with open("vectorizer.pkl","rb") as f:
      vecorizer=pickle.load(f)
 best_model=Sequential([
-                  Dense(20,activation="relu"),
+                  Dense(20,activation="relu",,input_dim=10000),
                   Dropout(0.2),
                   Dense(1,activation="sigmoid")
 ])
