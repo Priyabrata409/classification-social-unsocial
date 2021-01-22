@@ -41,7 +41,7 @@ def predict():
         crunchbase_slogan=request.form["cslogan"]
         crunchbase_industries=request.form["cindustry"]
         crunchbase_overview=request.form["coverview"]
-        text=linkedin_industry+linkedin_overview+linkedin_slogan+linkedin_specialities+crunchbase_industries+crunchbase_slogan+crunchbase_slogan
+        text=linkedin_industry+" "+linkedin_overview+" "+linkedin_slogan+" "+linkedin_specialities+" "+crunchbase_industries+" "+crunchbase_slogan+" "+crunchbase_slogan
         if len(text)<4:
            flash("Please Write Something","info")
            return render_template("home.html")
@@ -57,7 +57,6 @@ def predict():
         else:
             flash("The Company is an Unsocial company", "info")
         return render_template("home.html")
-
-
+    
 if __name__=="__main__":
     app.run(debug=True)
