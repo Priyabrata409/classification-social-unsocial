@@ -2,6 +2,7 @@ from flask import Flask, render_template,session,flash,request
 import re
 import nltk
 import pickle
+nltk.download('averaged_perceptron_tagger')
 nltk.download('stopwords')
 nltk.download('wordnet')
 from nltk.corpus import stopwords,wordnet
