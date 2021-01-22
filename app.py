@@ -17,9 +17,9 @@ def get_pos(word):
 lemmatizer=WordNetLemmatizer()
 nltk.download('stopwords')
 nltk.download('wordnet')
-with open("vector.pkl","rb") as f:
+with open("vectorizer.pkl","rb") as f:
      vecorizer=pickle.load(f)
-best_model=keras.models.load_model("My_model (5).h5")
+best_model=keras.models.load_model("My_model (6).h5")
 best_model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
 app=Flask(__name__)
 app.secret_key="kunu_lucky_pintu"
@@ -45,7 +45,7 @@ def predict():
         words = sen.split()
         words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
         text=" ".join(words)
-        text_array=vecorizer.transform(text).toarray()
+        text_array=vecorizer.transform([text]).toarray()
         val=best_model.predict(text_array)
         if val[0][0]>0.5:
             flash("The Company is a Social company", "info")
