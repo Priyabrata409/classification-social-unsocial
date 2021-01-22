@@ -2,6 +2,8 @@ from flask import Flask, render_template,session,flash,request
 import re
 import nltk
 import pickle
+nltk.download('stopwords')
+nltk.download('wordnet')
 from nltk.corpus import stopwords,wordnet
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
@@ -9,8 +11,6 @@ from tensorflow import keras
 from tensorflow.keras.models import load_model,Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from sklearn.feature_extraction.text import CountVectorizer
-nltk.download('stopwords')
-nltk.download('wordnet')
 def get_pos(word):
     tag=nltk.pos_tag([word])[0][1][0].upper()
     tag_dict={"J":wordnet.ADJ,"N":wordnet.NOUN,"V":wordnet.VERB,"R":wordnet.ADV}
