@@ -9,13 +9,14 @@ from tensorflow import keras
 from tensorflow.keras.models import load_model,Sequential
 from tensorflow.keras.layers import Dense, Dropout
 from sklearn.feature_extraction.text import CountVectorizer
+nltk.download('stopwords')
+nltk.download('wordnet')
 def get_pos(word):
     tag=nltk.pos_tag([word])[0][1][0].upper()
     tag_dict={"J":wordnet.ADJ,"N":wordnet.NOUN,"V":wordnet.VERB,"R":wordnet.ADV}
     return tag_dict.get(tag,wordnet.NOUN)
 lemmatizer=WordNetLemmatizer()
-nltk.download('stopwords')
-nltk.download('wordnet')
+
 with open("vectorizer.pkl","rb") as f:
      vecorizer=pickle.load(f)
 best_model=Sequential([
