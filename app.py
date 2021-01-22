@@ -1,6 +1,4 @@
 from flask import Flask, render_template,session,flash,request
-import pandas as pd
-import numpy as np
 import re
 import nltk
 import pickle
