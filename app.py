@@ -74,7 +74,7 @@ def predict():
         crunchbase_industries=request.form["cindustry"]
         crunchbase_overview=request.form["coverview"]
         text=linkedin_industry+" "+linkedin_overview+" "+linkedin_slogan+" "+linkedin_specialities+" "+crunchbase_industries+" "+crunchbase_slogan+" "+crunchbase_slogan
-        if len(text)<4:
+        if len(text)<10:
            flash("Please Write Something","info")
            return render_template("home.html")
         sen = re.sub("[^A-Za-z]", " ", text)
