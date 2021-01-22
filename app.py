@@ -77,18 +77,19 @@ def predict():
         if len(text)<10:
            flash("Please Write Something","info")
            return render_template("home.html")
-        sen = re.sub("[^A-Za-z]", " ", text)
-        sen = sen.lower()
-        words = sen.split()
-        words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
-        text=" ".join(words)
-        text_array=vecorizer.transform([text]).toarray()
-        val=best_model.predict(text_array)
-        if val[0][0]>0.5:
-            flash("The Company is a Social company", "info")
         else:
-            flash("The Company is an Unsocial company", "info")
-        return render_template("home.html")
+             sen = re.sub("[^A-Za-z]", " ", text)
+             sen = sen.lower()
+             words = sen.split()
+             words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
+             text=" ".join(words)
+             text_array=vecorizer.transform([text]).toarray()
+             val=best_model.predict(text_array)
+             if val[0][0]>0.5:
+                 flash("The Company is a Social company", "info")
+             else:
+                 flash("The Company is an Unsocial company", "info")
+             return render_template("home.html")
     
 if __name__=="__main__":
     app.run(debug=True)
