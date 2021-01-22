@@ -6,7 +6,8 @@ from nltk.corpus import stopwords,wordnet
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 from tensorflow import keras
-from tensorflow.keras.models import load_model
+from tensorflow.keras.models import load_model,Sequential
+from tensorflow.keras.layers import Dense, Dropout
 from sklearn.feature_extraction.text import CountVectorizer
 def get_pos(word):
     tag=nltk.pos_tag([word])[0][1][0].upper()
@@ -17,7 +18,12 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 with open("vectorizer.pkl","rb") as f:
      vecorizer=pickle.load(f)
-best_model=keras.models.load_model("My_model (6).h5")
+best_model=Sequential([
+                  Dense(20,activation="relu"),
+                  Dropout(0.2),
+                  Dense(1,activation="sigmoid")
+])
+best_model.load_weights("My_model (6).h5")
 best_model.compile(optimizer="adam",loss="binary_crossentropy",metrics=["accuracy"])
 app=Flask(__name__)
 app.secret_key="kunu_lucky_pintu"
