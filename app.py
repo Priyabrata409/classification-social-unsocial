@@ -6,7 +6,7 @@ from nltk.corpus import stopwords,wordnet
 from nltk.stem import WordNetLemmatizer
 import tensorflow as tf
 from tensorflow import keras
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from sklearn.feature_extraction.text import CountVectorizer
 def get_pos(word):
     tag=nltk.pos_tag([word])[0][1][0].upper()
