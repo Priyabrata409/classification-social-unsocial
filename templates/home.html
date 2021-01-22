@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebPage</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='style.css') }}">
+</head>
+
+<body background="blue">
+<h1 align="center">Prediction of Social and Unsocial Company</h1>
+
+<div class="container">
+    <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="lslogan" class="box" placeholder="Linkedin slogan">
+        <input type="text" class="box" name="loverview" placeholder="Linkedin Overview">
+        <input type="text" class="box" name="lindustry" placeholder="Linkedin Industry">
+        <input type="text" class="box" name="lspeciality" placeholder="Linkedin specialities">
+        <div class="but">
+        <input type="text" class="box" name="cslogan" placeholder="Crunchbase slogan">
+        <input type="text" class="box" name="cindustry" placeholder="Crunchbase industries">
+        <input type="text" class="box" name="coverview" placeholder="Crunchbase overview"></div>
+
+       <div class="sub"> <input type="submit" value="Submit"></div>
+    </form>
+</div>
+
+ <div class="flas">
+{% with messages=get_flashed_messages() %}
+   {% if messages %}
+     {% for msg in messages %}
+        <h2 style="text-align:center;color:black;">{{msg}}</h2>
+     {% endfor %}
+   {% endif %}
+ {% endwith %}
+    </div>
+</body>
+</html>
