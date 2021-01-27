@@ -7,6 +7,7 @@ nltk.download('stopwords')
 nltk.download('wordnet')
 from nltk.corpus import stopwords,wordnet
 from nltk.stem import WordNetLemmatizer
+from langdetect import detect
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.models import load_model,Sequential
@@ -83,6 +84,9 @@ def predict():
              words = sen.split()
              words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
              text=" ".join(words)
+             if detect(text)!="en":
+                flash("Sorry! Please Write in English","info")
+                return render_template("home.html")
              text_array=vecorizer.transform([text]).toarray()
              val=best_model.predict(text_array)
              if val[0][0]>0.5:
