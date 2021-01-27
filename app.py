@@ -79,14 +79,14 @@ def predict():
            flash("Please Write Something","info")
            return render_template("home.html")
         else:
+             if detect(text)!="en":
+                flash("Sorry! Please either change the language to english or write something meaningful","info")
+                return render_template("home.html")
              sen = re.sub("[^A-Za-z]", " ", text)
              sen = sen.lower()
              words = sen.split()
              words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
              text=" ".join(words)
-             if detect(text)!="en":
-                flash("Sorry! Please either change the language to english or write something meaningful","info")
-                return render_template("home.html")
              text_array=vecorizer.transform([text]).toarray()
              val=best_model.predict(text_array)
              if val[0][0]>0.5:
