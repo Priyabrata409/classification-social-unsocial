@@ -85,7 +85,7 @@ def predict():
              words = [lemmatizer.lemmatize(word, get_pos(word)) for word in words if word not in set(stopwords.words("english"))]
              text=" ".join(words)
              if detect(text)!="en":
-                flash("Sorry! Please Write in English","info")
+                flash("Sorry! Please Write change the language to english or Write something meaningful","info")
                 return render_template("home.html")
              text_array=vecorizer.transform([text]).toarray()
              val=best_model.predict(text_array)
